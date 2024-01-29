@@ -2,23 +2,25 @@
 pragma solidity 0.8.18;
 
 contract MyToken {
-    string public SolanaMonkeyBusiness;
-    string public SMB;
-    uint256 public totalSupply;
+    
+    string public tokenName = "lans";
+    string public TokenAbbrv = "lansi";
+    uint256 public totalSupply = 0;
 
-    mapping(address => uint256) public balances;
+    mapping(address => uint) public balances;
 
     // mint function
-    function mint(address _address, uint256 _value) public {
+    function mint(address _address, uint _value) public {
         totalSupply += _value;
         balances[_address] += _value;
     }
 
     // burn function
-    function burn(address _address, uint256 _value) public returns (bool) {
-        require(balances[_address] >= _value, "Insufficient balance");
+    function burn(address _address, uint256 _value) public {
+        if (balances[_address] >= _value){ 
         totalSupply -= _value;
         balances[_address] -= _value;
-        return true;
+      
     }
+}
 }
